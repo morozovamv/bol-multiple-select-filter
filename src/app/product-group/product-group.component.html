@@ -3,7 +3,7 @@
 	<app-search-input class="search-input-container">
 	</app-search-input>
 	<div class="checkboxes">
-		<app-checkbox></app-checkbox>
+		<app-checkbox *ngFor="let group of allGroups" [group]="group"></app-checkbox>
 	</div>
 	<app-apply-button class="button"></app-apply-button>
 </div>

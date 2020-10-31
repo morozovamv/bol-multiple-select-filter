@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { replaceSpecialSymbols } from 'src/utils/symbol-decoder';
+import { GroupsService } from '../groups.service';
+
+type Groups = Array<string>;
 
 @Component({
   selector: 'app-product-group',
   templateUrl: './product-group.component.html',
-  styleUrls: ['./product-group.component.css']
+  styleUrls: ['./product-group.component.css'],
 })
 export class ProductGroupComponent implements OnInit {
+  allGroups: Groups;
 
-  constructor() { }
+  constructor(private groupsService: GroupsService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    // TODO: sorting should ignore upper and lower cases
+    this.groupsService.getGroups().subscribe((groups) => {
+      this.allGroups = groups.sort().map(replaceSpecialSymbols);
+    });
   }
-
 }

@@ -1,5 +1,5 @@
-<label class="label">
-    <input class="input" type="checkbox">
+<label class="label" [for]="group">
+    <input class="input" type="checkbox" [id]="group" [name]="group">
     <span class="checkmark"></span>
-    <span class="text">group</span>
+    <span class="text">{{ group }}</span>
 </label>
