@@ -1,0 +1,45 @@
+.container {
+  position: relative;
+  height: 47px;
+}
+
+.input {
+  height: 100%;
+  width: 100%;
+  padding-left: 12px;
+  padding-top: 7px;
+  padding-bottom: 10px;
+  padding-right: 47px;
+  font-size: 19px;
+  color: #383838;
+  border: 2px solid #c4c3bf;
+  border-radius: 5px;
+}
+
+.input:hover {
+  border-color: #b4b4b4;
+}
+
+.input:focus,
+.input:active {
+  border-color: #989896;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #7b7b7b;
+}
+
+.container:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 47px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-size: 19px 19px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-image: url("src/assets/icons/search-icon.svg");
+}

@@ -1,0 +1,20 @@
+.button {
+  padding: 10px 0 11px;
+  width: 100%;
+  font-family: Open Sans;
+  font-size: 18.5px;
+  color: #fff;
+  background-color: #3063d0;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  box-shadow: 0px 1px #2f3c50;
+}
+
+.button:hover {
+  background-color: #103687;
+}
+
+.button:active {
+  transform: translateY(1px);
+}

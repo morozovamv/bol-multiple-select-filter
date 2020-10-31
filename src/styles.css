@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: Open Sans;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 50%;
+}
+
+::-webkit-scrollbar-track {
+  background: #e8e6e7;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c6c2bf;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

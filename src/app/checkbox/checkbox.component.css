@@ -1,0 +1,55 @@
+.label {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  font-size: 16px;
+  color: #383838;
+}
+
+/* hide default checkmark */
+.input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  margin-right: 12px;
+  border: 2px solid #c4c3c1;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 2px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  background-color: #3063d0;
+}
+
+.label:hover {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(219, 231, 255, 0.67) 100%
+  );
+}
+
+.label:hover .checkmark {
+  border-color: #6d8fda;
+}
+
+.input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.input:checked ~ .text {
+  color: #396aca;
+}
