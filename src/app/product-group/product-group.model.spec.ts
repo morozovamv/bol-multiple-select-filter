@@ -1,4 +1,8 @@
-import { caseInsensitiveAlphabetOrd, sortGroups } from './product-group.model';
+import {
+  caseInsensitiveAlphabetOrd,
+  isGroups,
+  sortGroups,
+} from './product-group.model';
 
 describe('ProductGroupModel', () => {
   it('should sort array in alphabet order and in case-insensitive way', () => {
@@ -17,5 +21,17 @@ describe('ProductGroupModel', () => {
     expect(sortGroups([selectedItem_0, selectedItem_1], list)).toEqual(
       expected
     );
+  });
+
+  it('should return true if data match the Group type', () => {
+    const data: any = ['group_0', 'group_1'];
+
+    expect(isGroups(data)).toBeTrue();
+  });
+
+  it('should return false if there is at least one item mismatch the Group entity type', () => {
+    const data: any = ['group_0', 1, 'group_1'];
+
+    expect(isGroups(data)).toBeFalse();
   });
 });
