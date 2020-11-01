@@ -4,7 +4,6 @@ export const caseInsensitiveAlphabetOrd = (a: string, b: string): number =>
   a.localeCompare(b, undefined, { sensitivity: 'base' });
 
 /**
- *
  * Places selected items on top of the list.
  *
  * @example
