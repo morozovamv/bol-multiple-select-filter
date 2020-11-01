@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { replaceSpecialSymbols } from 'src/utils/symbol-decoder';
 import { GroupsService } from '../groups.service';
 
 type Groups = Array<string>;
@@ -10,7 +9,7 @@ type Groups = Array<string>;
   styleUrls: ['./product-group.component.css'],
 })
 export class ProductGroupComponent implements OnInit {
-  allGroups: Groups = [];
+  rawGroups: Groups = [];
 
   searchInput: string = '';
 
@@ -19,7 +18,7 @@ export class ProductGroupComponent implements OnInit {
   ngOnInit() {
     // TODO: sorting should ignore upper and lower cases
     this.groupsService.getGroups().subscribe((groups) => {
-      this.allGroups = groups.sort().map(replaceSpecialSymbols);
+      this.rawGroups = groups.sort();
     });
   }
 
