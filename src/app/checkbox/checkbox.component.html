@@ -1,5 +1,10 @@
 <label class="label" [for]="group">
-    <input class="input" type="checkbox" [id]="group" [name]="group">
+    <input 
+        class="input"
+        type="checkbox"
+        [id]="group"
+        [name]="group"
+        (change)="toggleGroup(group)">
     <span class="checkmark"></span>
     <span class="text">{{ group }}</span>
 </label>

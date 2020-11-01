@@ -3,7 +3,11 @@
 	<app-search-input class="search-input-container" (inputEvent)="setSearchInputValue($event)">
 	</app-search-input>
 	<div class="checkboxes">
-		<app-checkbox *ngFor="let group of rawGroups" [group]="group"></app-checkbox>
+		<app-checkbox 
+			*ngFor="let group of groupsToRender" 
+			[group]="group" 
+			(toggleGroupEvent)="toggleGroup($event)">
+		</app-checkbox>
 	</div>
 	<app-apply-button class="button"></app-apply-button>
 </div>

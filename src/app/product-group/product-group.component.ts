@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { array } from 'src/utils/array.utils';
 import { GroupsService } from '../groups.service';
-
-type Groups = Array<string>;
+import {
+  caseInsensitiveAlphabetOrd,
+  Groups,
+  sortGroups,
+} from './product-group.model';
 
 @Component({
   selector: 'app-product-group',
@@ -10,19 +14,38 @@ type Groups = Array<string>;
 })
 export class ProductGroupComponent implements OnInit {
   rawGroups: Groups = [];
+  selectedGroups: Groups = [];
+  groupsToRender: Groups = [];
 
   searchInput: string = '';
 
   constructor(private groupsService: GroupsService) {}
 
   ngOnInit() {
-    // TODO: sorting should ignore upper and lower cases
     this.groupsService.getGroups().subscribe((groups) => {
-      this.rawGroups = groups.sort();
+      const sortedGroups = groups.sort(caseInsensitiveAlphabetOrd);
+
+      this.rawGroups = sortedGroups;
+      this.groupsToRender = sortedGroups;
     });
   }
 
-  setSearchInputValue(value: string) {
+  setSearchInputValue(value: string): void {
     this.searchInput = value;
+  }
+
+  toggleGroup(newGroup: string): void {
+    const selectedGroups = this.selectedGroups;
+
+    const updatedSelectedGroups = array
+      .toggle(newGroup, selectedGroups)
+      .sort(caseInsensitiveAlphabetOrd);
+
+    this.selectedGroups = updatedSelectedGroups;
+
+    this.groupsToRender = sortGroups(
+      updatedSelectedGroups,
+      this.groupsToRender
+    );
   }
 }
