@@ -28,3 +28,9 @@ export const sortGroups = (
       .sort(caseInsensitiveAlphabetOrd),
   ];
 };
+
+/**
+ * Checks that the received data matches Groups type
+ */
+export const isGroups = (groups: any): groups is Groups =>
+  Array.isArray(groups) && groups.every((group) => typeof group === 'string');

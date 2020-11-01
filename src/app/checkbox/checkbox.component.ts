@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CheckboxComponent implements OnInit {
   @Input() group: string = '';
+  @Input() isSelected: boolean = false;
   @Output() toggleGroupEvent = new EventEmitter();
 
   constructor() {}

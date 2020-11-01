@@ -4,6 +4,7 @@
         type="checkbox"
         [id]="group"
         [name]="group"
+        [checked]="isSelected"
         (change)="toggleGroup(group)">
     <span class="checkmark"></span>
     <span class="text">{{ group }}</span>

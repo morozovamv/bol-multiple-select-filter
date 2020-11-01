@@ -6,6 +6,7 @@
 		<app-checkbox 
 			*ngFor="let group of groupsToRender" 
 			[group]="group" 
+			[isSelected]="isGroupSelected(group)"
 			(toggleGroupEvent)="toggleGroup($event)">
 		</app-checkbox>
 	</div>

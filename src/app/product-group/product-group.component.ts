@@ -4,8 +4,11 @@ import { GroupsService } from '../groups.service';
 import {
   caseInsensitiveAlphabetOrd,
   Groups,
+  isGroups,
   sortGroups,
 } from './product-group.model';
+
+const SELECTED_GROUP_STORAGE_KEY = 'selectedGroups';
 
 @Component({
   selector: 'app-product-group',
@@ -24,9 +27,39 @@ export class ProductGroupComponent implements OnInit {
   ngOnInit() {
     this.groupsService.getGroups().subscribe((groups) => {
       const sortedGroups = groups.sort(caseInsensitiveAlphabetOrd);
-
       this.rawGroups = sortedGroups;
-      this.groupsToRender = sortedGroups;
+
+      const selectedGroupsRaw = sessionStorage.getItem(
+        SELECTED_GROUP_STORAGE_KEY
+      );
+
+      if (selectedGroupsRaw !== null) {
+        const selectedGroups = JSON.parse(selectedGroupsRaw);
+
+        if (isGroups(selectedGroups)) {
+          // if data is changed between sessions (before and after page reload)
+          const filtered = selectedGroups.filter((group) =>
+            sortedGroups.includes(group)
+          );
+
+          this.selectedGroups = filtered;
+
+          this.groupsToRender = [
+            ...filtered,
+            ...sortedGroups.filter((group) => !filtered.includes(group)),
+          ];
+        } else {
+          console.warn(
+            new Error(
+              `Session storage includes unsupported data. The selection of predefined checkboxes is canceled. Session storage is cleared by "${SELECTED_GROUP_STORAGE_KEY}" key now.`
+            )
+          );
+          sessionStorage.removeItem(SELECTED_GROUP_STORAGE_KEY);
+          this.groupsToRender = sortedGroups;
+        }
+      } else {
+        this.groupsToRender = sortedGroups;
+      }
     });
   }
 
@@ -43,6 +76,10 @@ export class ProductGroupComponent implements OnInit {
       .toggle(newGroup, selectedGroups)
       .sort(caseInsensitiveAlphabetOrd);
 
+    sessionStorage.setItem(
+      SELECTED_GROUP_STORAGE_KEY,
+      JSON.stringify(updatedSelectedGroups)
+    );
     this.selectedGroups = updatedSelectedGroups;
 
     this.groupsToRender = sortGroups(
@@ -60,5 +97,9 @@ export class ProductGroupComponent implements OnInit {
       ...this.selectedGroups,
       ...array.filterMatchesByString(search, unselectedGroups),
     ];
+  }
+
+  isGroupSelected(group: string): boolean {
+    return this.selectedGroups.includes(group);
   }
 }
