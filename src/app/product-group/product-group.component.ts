@@ -32,6 +32,8 @@ export class ProductGroupComponent implements OnInit {
 
   setSearchInputValue(value: string): void {
     this.searchInput = value;
+
+    this.sortMatchesInUnselectedGroups(value);
   }
 
   toggleGroup(newGroup: string): void {
@@ -47,5 +49,16 @@ export class ProductGroupComponent implements OnInit {
       updatedSelectedGroups,
       this.groupsToRender
     );
+  }
+
+  sortMatchesInUnselectedGroups(search: string): void {
+    const unselectedGroups = this.rawGroups.filter(
+      (group) => !this.selectedGroups.includes(group)
+    );
+
+    this.groupsToRender = [
+      ...this.selectedGroups,
+      ...array.filterMatchesByString(search, unselectedGroups),
+    ];
   }
 }
