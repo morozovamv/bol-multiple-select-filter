@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./checkbox.component.css'],
 })
 export class CheckboxComponent implements OnInit {
-  @Input() group: string;
+  @Input() group: string = '';
 
   constructor() {}
 

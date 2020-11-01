@@ -10,7 +10,7 @@ type Groups = Array<string>;
   styleUrls: ['./product-group.component.css'],
 })
 export class ProductGroupComponent implements OnInit {
-  allGroups: Groups;
+  allGroups: Groups = [];
 
   constructor(private groupsService: GroupsService) {}
 
