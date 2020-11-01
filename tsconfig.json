@@ -15,6 +15,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "noUnusedLocals": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "suppressImplicitAnyIndexErrors": true,
   }
 }
