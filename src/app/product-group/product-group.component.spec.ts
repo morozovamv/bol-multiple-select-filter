@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { ApplyButtonComponent } from '../apply-button/apply-button.component';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { GroupsService } from '../groups.service';
+import { SearchInputComponent } from '../search-input/search-input.component';
 
 import { ProductGroupComponent } from './product-group.component';
 
@@ -16,7 +19,12 @@ describe('ProductGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductGroupComponent],
+      declarations: [
+        ProductGroupComponent,
+        ApplyButtonComponent,
+        SearchInputComponent,
+        CheckboxComponent,
+      ],
       providers: [{ provide: GroupsService, useValue: groupsServiceStub }],
     }).compileComponents();
   }));
