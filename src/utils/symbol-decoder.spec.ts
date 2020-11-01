@@ -1,6 +1,6 @@
 import { replaceIfMatch, replaceSpecialSymbols } from './symbol-decoder';
 
-describe('Symbol-decoder', () => {
+describe('SymbolDecoder', () => {
   it('should return source if there is no match', () => {
     const source = 'String without match';
 
