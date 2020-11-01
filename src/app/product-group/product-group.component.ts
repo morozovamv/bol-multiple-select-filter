@@ -12,6 +12,8 @@ type Groups = Array<string>;
 export class ProductGroupComponent implements OnInit {
   allGroups: Groups = [];
 
+  searchInput: string = '';
+
   constructor(private groupsService: GroupsService) {}
 
   ngOnInit() {
@@ -19,5 +21,9 @@ export class ProductGroupComponent implements OnInit {
     this.groupsService.getGroups().subscribe((groups) => {
       this.allGroups = groups.sort().map(replaceSpecialSymbols);
     });
+  }
+
+  setSearchInputValue(value: string) {
+    this.searchInput = value;
   }
 }
