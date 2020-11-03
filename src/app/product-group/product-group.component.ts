@@ -82,6 +82,16 @@ export class ProductGroupComponent implements OnInit {
     );
     this.selectedGroups = updatedSelectedGroups;
 
+    if (
+      selectedGroups.includes(newGroup) &&
+      array.filterMatchesByString(this.searchInput, [newGroup]).length === 0
+    ) {
+      this.groupsToRender = sortGroups(
+        updatedSelectedGroups,
+        this.groupsToRender.filter((group) => group !== newGroup)
+      );
+    }
+
     this.groupsToRender = sortGroups(
       updatedSelectedGroups,
       this.groupsToRender
